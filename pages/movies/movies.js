@@ -1,3 +1,5 @@
+const util = require('../../utils/util.js');
+
 var app = getApp();
 
 Page({
@@ -38,7 +40,7 @@ Page({
                 'content-type': 'application/xml'
             },
             success: function(res) {
-                // console.log(res);
+                console.log(res);
                 that.processDoubanData(res.data, title);
             },
             fail: function() {
@@ -64,6 +66,7 @@ Page({
             }
             // 循环数据
             var temp = {
+                stars: util.convertToStarsArray(subjects.rating.stars),
                 title: title,
                 average: subjects.rating.average,
                 coverageUrl: subjects.images.large,
