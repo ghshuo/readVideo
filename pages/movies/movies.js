@@ -6,6 +6,9 @@ Page({
      * 页面的初始数据
      */
     data: {
+        inTheaters: {},
+        comingSoon: {},
+        top250: {}
 
     },
 
@@ -21,11 +24,11 @@ Page({
         // this.getMovieListData(inTheatersUrl, "inTheaters", "正在热映");
         // this.getMovieListData(comingSoonUrl, "comingSoon", "即将上映");
         // this.getMovieListData(top250Url, "top250", "豆瓣Top250");
-        this.getMovieListData(inTheatersUrl);
-        // this.getMovieListData(comingSoonUrl);
-        // this.getMovieListData(top250Url);
+        this.getMovieListData(inTheatersUrl, "inTheaters");
+        this.getMovieListData(comingSoonUrl, "comingSoon");
+        this.getMovieListData(top250Url, "top250");
     },
-    getMovieListData: function(url) {
+    getMovieListData: function(url,title) {
         var that = this;
         wx.request({
             url: url,
@@ -36,7 +39,7 @@ Page({
             },
             success: function(res) {
                 // console.log(res);
-                that.processDoubanData(res.data);
+                that.processDoubanData(res.data, title);
             },
             fail: function() {
                 console.log('fail');
@@ -47,7 +50,7 @@ Page({
         })
     },
     // 统一处理返回的数据
-    processDoubanData: function(moviesDouban) {
+    processDoubanData: function(moviesDouban ,settedKey) {
         // 定义一个空数组作为处理完数据的容器
         let movies = [];
 
@@ -59,6 +62,7 @@ Page({
             if (title.length >= 6) {
                 title = title.substring(0, 6) + "...";
             }
+            // 循环数据
             var temp = {
                 title: title,
                 average: subjects.rating.average,
@@ -67,11 +71,12 @@ Page({
             }
             movies.push(temp);
         }
-        console.log(movies);
-        this.setData({
+        // 动态赋值
+        let readyData = {};
+        readyData[settedKey] = {
             movies: movies
-        })
-
+        }
+        this.setData(readyData);
     },
 
     /**
