@@ -2,7 +2,8 @@
 App({
      globalDate:{
          g_isPlagyingMusic: false, // 音乐是否播放
-         g_currentMusicPostId: null // 那个音乐在播放
+         g_currentMusicPostId: null, // 那个音乐在播放
+         doubanBase: "https://douban.uieee.com" // 豆瓣api地址
      }
 })
 // App({
