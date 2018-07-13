@@ -23,14 +23,11 @@ Page({
         var inTheatersUrl = app.globalDate.doubanBase + "/v2/movie/in_theaters" + "?start=0&count=3"; //
         var comingSoonUrl = app.globalDate.doubanBase + "/v2/movie/coming_soon" + "?start=0&count=3"; // 即将上映
         var top250Url = app.globalDate.doubanBase + "/v2/movie/top250" + "?start=0&count=3"; // 豆瓣Top250
-        // this.getMovieListData(inTheatersUrl, "inTheaters", "正在热映");
-        // this.getMovieListData(comingSoonUrl, "comingSoon", "即将上映");
-        // this.getMovieListData(top250Url, "top250", "豆瓣Top250");
         this.getMovieListData(inTheatersUrl, "inTheaters");
         this.getMovieListData(comingSoonUrl, "comingSoon");
         this.getMovieListData(top250Url, "top250");
     },
-    getMovieListData: function(url,title) {
+    getMovieListData: function (url, title) {
         var that = this;
         wx.request({
             url: url,
@@ -52,7 +49,7 @@ Page({
         })
     },
     // 统一处理返回的数据
-    processDoubanData: function(moviesDouban ,settedKey) {
+    processDoubanData: function(moviesDouban, settedKey) {
         // 定义一个空数组作为处理完数据的容器
         let movies = [];
 
@@ -77,6 +74,7 @@ Page({
         // 动态赋值
         let readyData = {};
         readyData[settedKey] = {
+            cateTitle: moviesDouban.title,
             movies: movies
         }
         this.setData(readyData);
