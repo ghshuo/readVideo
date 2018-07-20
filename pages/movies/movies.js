@@ -27,7 +27,21 @@ Page({
         this.getMovieListData(comingSoonUrl, "comingSoon");
         this.getMovieListData(top250Url, "top250");
     },
-    getMovieListData: function (url, title) {
+    /**
+     * 更多页面跳转
+     */
+    onMoreTap: function(event) {
+        let category = event.currentTarget.dataset.category;
+        wx.navigateTo({
+            url: 'more-movie/more-movie?category=' + category
+        })
+    },
+    /**
+     * 接口请求 
+     * url 地址
+     * title 名称
+     */
+    getMovieListData: function(url, title) {
         var that = this;
         wx.request({
             url: url,
@@ -37,11 +51,9 @@ Page({
                 'content-type': 'application/xml'
             },
             success: function(res) {
-                console.log(res);
                 that.processDoubanData(res.data, title);
             },
             fail: function() {
-                console.log('fail');
             },
             complete: function() {
 

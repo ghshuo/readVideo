@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -13,7 +13,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.0.9",
 	"appid": "wx69931f81aee35e46",
-	"projectname": "wechatDemo",
+	"projectname": "%E9%98%85%E8%AF%BB%E4%B8%8E%E7%94%B5%E5%BD%B1",
 	"isGameTourist": false,
 	"condition": {
 		"search": {

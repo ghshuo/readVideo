@@ -4,13 +4,31 @@ function convertToStarsArray(stars) {
     for (var i = 1; i <= 5; i++) {
         if (i <= num) {
             array.push(1);
-        }
-        else {
+        } else {
             array.push(0);
         }
     }
     return array;
 }
+
+function http(url, callBack, methods) {
+    wx.request({
+        url: url,
+        data: {},
+        method: methods,
+        header: {
+            'content-type': 'application/xml'
+        },
+        success: function(res) {
+            callBack(res.data);
+        },
+        fail: function(error) {
+            console.log(error);
+        }
+    })
+}
+
 module.exports = {
-    convertToStarsArray: convertToStarsArray
+    convertToStarsArray: convertToStarsArray,
+    http: http
 }
