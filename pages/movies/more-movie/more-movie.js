@@ -74,8 +74,11 @@ Page({
         }
         var totalMovies = {};
         // 如果要绑定新加载的数据，那么需要同旧有的数据合并在一起
-        if (!this.data.isEmpty) {
+        if (!this.data.isEmpty) { // 不是空值  说明不是第一次加载数据
             totalMovies = this.data.movies.concat(movies);
+            if (movies != "") {
+                this.data.totalCount += 20;
+            }
         } else {
             totalMovies = movies;
             this.data.isEmpty = false;
@@ -83,9 +86,8 @@ Page({
         this.setData({
             movies: totalMovies
         });
-        this.data.totalCount += 20;
         wx.hideNavigationBarLoading();
-        // wx.stopPullDownRefresh()
+        wx.stopPullDownRefresh();
     },
     /**
      * 生命周期函数--监听页面初次渲染完成
@@ -96,46 +98,16 @@ Page({
             title: this.data.navigateTitle
         })
     },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function() {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function() {
-
-    },
-
     /**
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh: function() {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function() {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function() {
-
+        let requestUrl = this.data.requestUrl + "?start=0&count=20";
+        this.data.movies = {};
+        this.data.isEmpty = true;
+        this.data.totalCount = 20;
+        util.http(requestUrl, this.processDoubanData);
+        // 设置loading
+        wx.showNavigationBarLoading();
     }
 })
