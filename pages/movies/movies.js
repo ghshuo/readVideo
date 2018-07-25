@@ -10,8 +10,9 @@ Page({
     data: {
         inTheaters: {},
         comingSoon: {},
-        top250: {}
-
+        top250: {},
+        containerShow: true,
+        searchPnelShow: false
     },
 
     /**
@@ -26,6 +27,24 @@ Page({
         this.getMovieListData(inTheatersUrl, "inTheaters");
         this.getMovieListData(comingSoonUrl, "comingSoon");
         this.getMovieListData(top250Url, "top250");
+    },
+    /**
+     * 搜索
+     */
+    onCancelImg: function(enent){
+        this.setData({
+            containerShow: true,
+            searchPnelShow: false
+        })
+    },
+    onBindFocus: function(event) {
+        this.setData({
+            containerShow: false,
+            searchPnelShow: true
+        })
+    },
+    onBindChange: function(event) {
+
     },
     /**
      * 更多页面跳转
@@ -53,8 +72,7 @@ Page({
             success: function(res) {
                 that.processDoubanData(res.data, title);
             },
-            fail: function() {
-            },
+            fail: function() {},
             complete: function() {
 
             }
