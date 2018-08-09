@@ -11,6 +11,7 @@ Page({
         inTheaters: {},
         comingSoon: {},
         top250: {},
+        searchResult: {},
         containerShow: true,
         searchPnelShow: false
     },
@@ -31,12 +32,14 @@ Page({
     /**
      * 搜索
      */
+    // 关闭搜索页面
     onCancelImg: function(enent){
         this.setData({
             containerShow: true,
             searchPnelShow: false
         })
     },
+    // 打开搜索的页面
     onBindFocus: function(event) {
         this.setData({
             containerShow: false,
@@ -44,9 +47,12 @@ Page({
         })
     },
     onBindChange: function(event) {
-
+        // 获取输入框中的内容
+        let text = event.detail.value;
+        let searchUrl = app.globalDate.doubanBase + "/v2/movie/search?q="+ text;
+        this.getMovieListData(searchUrl,"searchResult" , "");
     },
-    /**
+    /**`                
      * 更多页面跳转
      */
     onMoreTap: function(event) {
@@ -87,7 +93,7 @@ Page({
             let subjects = moviesDouban.subjects[index];
             // console.log(subjects);
             let title = subjects.title;
-            // 处理名称
+            // 处理名称 
             if (title.length >= 6) {
                 title = title.substring(0, 6) + "...";
             }
