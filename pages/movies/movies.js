@@ -46,7 +46,7 @@ Page({
             searchPnelShow: true
         })
     },
-    onBindChange: function(event) {
+    onBindblur: function(event) {
         // 获取输入框中的内容
         let text = event.detail.value;
         let searchUrl = app.globalDate.doubanBase + "/v2/movie/search?q="+ text;
