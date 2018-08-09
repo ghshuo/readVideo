@@ -17,7 +17,7 @@ function http(url, callBack, methods) {
         data: {},
         method: methods,
         header: {
-            'content-type': 'application/xml'
+            'content-type': 'application/json'
         },
         success: function(res) {
             callBack(res.data);
