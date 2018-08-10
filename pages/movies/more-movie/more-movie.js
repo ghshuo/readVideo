@@ -98,6 +98,12 @@ Page({
             title: this.data.navigateTitle
         })
     },
+    onMovieTap: function (event) {
+        var movieId = event.currentTarget.dataset.movieid;
+        wx.navigateTo({
+            url: '../movie-detail/movie-detail?id=' + movieId
+        })
+    },
     /**
      * 页面相关事件处理函数--监听用户下拉动作
      */

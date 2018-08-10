@@ -28,16 +28,17 @@ Page({
             this.setData({
                 collected: postCollected
             })
+            console.log(postCollected)
         } else {
             var postsCollected = {};
             postsCollected[postId] = false;
             wx.setStorageSync('posts_collected', postsCollected);
         }
         // 在app.js中设置全局变量 ，  isPlagyingMusic初始化时false   音乐在播放把isPlagyingMusic 变成true  而没有播放就不需要改变
-        if (app.globalDate.g_isPlagyingMusic && app.globalDate.g_currentMusicPostId == postId){ //  如果是true说明音乐正在播放
+        if (app.globalDate.g_isPlagyingMusic && app.globalDate.g_currentMusicPostId == postId) { //  如果是true说明音乐正在播放
             this.setData({
                 isPlagyingMusic: true
-            })
+            }) 
         }
 
         this.setMusicMonitor();
@@ -46,10 +47,10 @@ Page({
     /**
      * 监听音乐播放状态
      */
-    setMusicMonitor: function () {
+    setMusicMonitor: function() {
         var that = this;
         // 监听播放
-        wx.onBackgroundAudioPlay(function () {
+        wx.onBackgroundAudioPlay(function() {
             that.setData({
                 isPlagyingMusic: true
             })
@@ -57,15 +58,24 @@ Page({
             app.globalDate.g_currentMusicPostId = that.data.currentPostId;
         })
         // 监听停止
-        wx.onBackgroundAudioStop(function () {
+        wx.onBackgroundAudioStop(function() {
             that.setData({
                 isPlagyingMusic: false
             })
             app.globalDate.g_isPlagyingMusic = false;
+            app.globalDate.g_currentMusicPostId = null;
+        })
+
+        wx.onBackgroundAudioStop(function() {
+            that.setData({
+                isPlagyingMusic: false
+            })
+            app.globalDate.g_isPlagyingMusic = false;
+            app.globalDate.g_currentMusicPostId = null;
         })
     },
     // 音乐播放
-    onMusicTap: function () {
+    onMusicTap: function() {
         // 音乐播放isPlagyingMusic =true 是播放  false 是关闭 
         var currentPostId = this.data.currentPostId;
         var isPlagyingMusic = this.data.isPlagyingMusic;
@@ -87,7 +97,9 @@ Page({
             })
         }
     },
-
+    /**
+     * 阅读 收藏
+     */
     onColletionTap: function(event) {
         var postsCollected = wx.getStorageSync('posts_collected');
         var postCollected = postsCollected[this.data.currentPostId];

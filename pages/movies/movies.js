@@ -61,6 +61,15 @@ Page({
             url: 'more-movie/more-movie?category=' + category
         })
     },
+    /**`                
+     * 跳转到详情页面
+     */
+    onMovieTap: function(event){
+        let movieId = event.currentTarget.dataset.movieid;
+        wx.navigateTo({
+            url: 'movie-detail/movie-detail?id=' + movieId
+        })
+    },
     /**
      * 接口请求 
      * url 地址
