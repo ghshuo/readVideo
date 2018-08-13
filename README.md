@@ -76,6 +76,7 @@
     }
 }
 
-## 项目地址
+## 项目浏览地址
+请用微信扫描进行查看
    ![项目浏览地址](http://p9mrpjx2c.bkt.clouddn.com/video.jpg)
 
