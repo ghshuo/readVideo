@@ -41,42 +41,8 @@
         return array;
     }
     
-配置app.json
-
-    {
-    "pages": [
-        "pages/index/index",
-        "pages/index/post-detail/post-detail",
-        "pages/movies/movies",
-        "pages/movies/movie-detail/movie-detail",
-        "pages/movies/more-movie/more-movie"
-    ],
-    "window": {
-        "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#fff",
-        "navigationBarTitleText": "WeChat",
-        "navigationBarTextStyle": "black"
-    },
-    "tabBar": {
-        "borderStyle": "white",
-        "list": [
-            {
-                "pagePath": "pages/index/index",
-                "text": "首页",
-                "iconPath": "images/tab/yuedu.png",
-                "selectedIconPath": "images/tab/yuedu_hl.png"
-            },
-            {
-                "pagePath": "pages/movies/movies",
-                "text": "电影",
-                "iconPath": "images/tab/dianying.png",
-                "selectedIconPath": "images/tab/dianying_hl.png"
-            }
-        ]
-    }
-}
-
-## 项目浏览地址
-请用微信扫描进行查看
-   ![项目浏览地址](http://p9mrpjx2c.bkt.clouddn.com/video.jpg)
+## 项目浏览
+   ![项目浏览地址](http://p9mrpjx2c.bkt.clouddn.com/video1.png)
+   ![项目浏览地址](http://p9mrpjx2c.bkt.clouddn.com/video2.png)
+    
 
